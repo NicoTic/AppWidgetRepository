@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <FrameLayout
+            android:id="@+id/carbon_chipContent"
+            android:layout_width="@dimen/carbon_iconSize"
+            android:layout_height="@dimen/carbon_iconSize"
+            android:layout_margin="@dimen/carbon_chipCloseMargin"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/carbon_chipCheck"
+            android:layout_width="@dimen/carbon_iconSize"
+            android:layout_height="@dimen/carbon_iconSize"
+            android:layout_margin="@dimen/carbon_chipCloseMargin"
+            android:visibility="gone"
+            android:src="@drawable/carbon_check"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/carbon_chipText"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="@dimen/carbon_chipPadding"
+        tools:text="text" />
+
+    <ImageView
+        android:id="@+id/carbon_chipClose"
+        android:layout_width="@dimen/carbon_iconSize"
+        android:layout_height="@dimen/carbon_iconSize"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/carbon_chipCloseMargin"
+        android:scaleType="center"
+        android:src="@drawable/carbon_remove" />
+
+</merge>

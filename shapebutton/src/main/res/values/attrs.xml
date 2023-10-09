@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="carbon_linearLayoutStyle" format="reference" />
+
+    <declare-styleable name="shape_button">
+        <attr name="carbon_elevation" />
+        <attr name="carbon_elevationShadowColor" />
+        <attr name="carbon_elevationAmbientShadowColor" />
+        <attr name="carbon_elevationSpotShadowColor" />
+
+
+        <attr name="carbon_cornerRadiusTopStart" />
+        <attr name="carbon_cornerRadiusTopEnd" />
+        <attr name="carbon_cornerRadiusBottomStart" />
+        <attr name="carbon_cornerRadiusBottomEnd" />
+        <attr name="carbon_cornerRadius" />
+
+        <attr name="carbon_cornerCutTopStart" />
+        <attr name="carbon_cornerCutTopEnd" />
+        <attr name="carbon_cornerCutBottomStart" />
+        <attr name="carbon_cornerCutBottomEnd" />
+        <attr name="carbon_cornerCut" />
+
+
+        <attr name="carbon_rippleColor" />
+        <attr name="carbon_rippleHotspot" />
+        <attr name="carbon_rippleStyle" />
+        <attr name="carbon_rippleRadius" />
+
+        <attr name="carbon_stroke" />
+        <attr name="carbon_strokeWidth" />
+    </declare-styleable>
+
+    <attr name="carbon_rippleStyle" format="enum">
+        <enum name="over" value="0" />
+        <enum name="background" value="1" />
+        <enum name="borderless" value="2" />
+    </attr>
+
+
+    <attr name="carbon_chipStyle" format="reference" />
+    <declare-styleable name="Chip">
+        <attr name="android:text"/>
+        <attr name="android:background" />
+        <attr name="pressed_color" format="color"/>
+        <attr name="checked_color" format="color"/>
+        <attr name="un_enable_color" format="color"/>
+        <attr name="carbon_icon" />
+        <attr name="carbon_removable" format="boolean" />
+        <attr name="android:checked" />
+    </declare-styleable>
+</resources>

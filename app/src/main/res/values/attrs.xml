@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="carbon_linearLayoutStyle" format="reference" />
+    <declare-styleable name="LinearLayout">
+        <attr name="android:background" />
+
+        <attr name="carbon_rippleColor" />
+        <attr name="carbon_rippleHotspot" />
+        <attr name="carbon_rippleStyle" />
+        <attr name="carbon_rippleRadius" />
+
+        <attr name="carbon_inAnimation" />
+        <attr name="carbon_outAnimation" />
+
+        <attr name="carbon_touchMargin" />
+        <attr name="carbon_touchMarginLeft" />
+        <attr name="carbon_touchMarginTop" />
+        <attr name="carbon_touchMarginRight" />
+        <attr name="carbon_touchMarginBottom" />
+
+        <attr name="carbon_inset" />
+        <attr name="carbon_insetLeft" />
+        <attr name="carbon_insetTop" />
+        <attr name="carbon_insetRight" />
+        <attr name="carbon_insetBottom" />
+        <attr name="carbon_insetColor" />
+
+        <attr name="carbon_maxWidth" />
+        <attr name="carbon_maxHeight" />
+
+        <attr name="carbon_elevation" />
+        <attr name="carbon_elevationShadowColor" />
+        <attr name="carbon_elevationAmbientShadowColor" />
+        <attr name="carbon_elevationSpotShadowColor" />
+
+        <attr name="carbon_cornerRadiusTopStart" />
+        <attr name="carbon_cornerRadiusTopEnd" />
+        <attr name="carbon_cornerRadiusBottomStart" />
+        <attr name="carbon_cornerRadiusBottomEnd" />
+        <attr name="carbon_cornerRadius" />
+
+        <attr name="carbon_cornerCutTopStart" />
+        <attr name="carbon_cornerCutTopEnd" />
+        <attr name="carbon_cornerCutBottomStart" />
+        <attr name="carbon_cornerCutBottomEnd" />
+        <attr name="carbon_cornerCut" />
+
+        <attr name="carbon_stroke" />
+        <attr name="carbon_strokeWidth" />
+    </declare-styleable>
+
+    <attr name="carbon_chipStyle" format="reference" />
+    <declare-styleable name="Chip">
+        <attr name="android:background" />
+        <attr name="carbon_icon" />
+        <attr name="carbon_removable" format="boolean" />
+        <attr name="android:checked" />
+        <attr name="carbon_tooltipText" />
+    </declare-styleable>
+
+
+    <attr name="carbon_buttonGravity" format="enum">
+        <enum name="left" value="0" />
+        <enum name="start" value="1" />
+        <enum name="right" value="2" />
+        <enum name="end" value="3" />
+    </attr>
+
+    <declare-styleable name="RadioButton">
+        <attr name="android:drawablePadding" />
+        <attr name="android:checked" />
+        <attr name="carbon_buttonGravity" />
+        <attr name="android:button" />
+    </declare-styleable>
+
+    <declare-styleable name="shape_button">
+        <attr name="android:background" />
+        <attr name="android:textColor" />
+        <attr name="carbon_elevation" />
+        <attr name="carbon_elevationShadowColor" />
+        <attr name="carbon_elevationAmbientShadowColor" />
+        <attr name="carbon_elevationSpotShadowColor" />
+
+        <attr name="android:textStyle" />
+        <attr name="carbon_font" />
+        <attr name="carbon_fontWeight" />
+        <attr name="android:textAppearance" />
+        <attr name="android:singleLine" />
+        <attr name="android:maxLines" />
+        <attr name="android:textAllCaps" />
+
+
+        <attr name="carbon_cornerRadiusTopStart" />
+        <attr name="carbon_cornerRadiusTopEnd" />
+        <attr name="carbon_cornerRadiusBottomStart" />
+        <attr name="carbon_cornerRadiusBottomEnd" />
+        <attr name="carbon_cornerRadius" />
+
+        <attr name="carbon_cornerCutTopStart" />
+        <attr name="carbon_cornerCutTopEnd" />
+        <attr name="carbon_cornerCutBottomStart" />
+        <attr name="carbon_cornerCutBottomEnd" />
+        <attr name="carbon_cornerCut" />
+
+
+        <attr name="carbon_rippleColor" />
+        <attr name="carbon_rippleHotspot" />
+        <attr name="carbon_rippleStyle" />
+        <attr name="carbon_rippleRadius" />
+
+        <attr name="carbon_stroke" />
+        <attr name="carbon_strokeWidth" />
+    </declare-styleable>
+
+    <declare-styleable name="Button">
+        <attr name="android:background" />
+        <attr name="android:textColor" />
+
+        <attr name="carbon_rippleColor" />
+        <attr name="carbon_rippleHotspot" />
+        <attr name="carbon_rippleStyle" />
+        <attr name="carbon_rippleRadius" />
+
+        <attr name="carbon_elevation" />
+        <attr name="carbon_elevationShadowColor" />
+        <attr name="carbon_elevationAmbientShadowColor" />
+        <attr name="carbon_elevationSpotShadowColor" />
+
+        <attr name="carbon_touchMargin" />
+        <attr name="carbon_touchMarginLeft" />
+        <attr name="carbon_touchMarginTop" />
+        <attr name="carbon_touchMarginRight" />
+        <attr name="carbon_touchMarginBottom" />
+
+        <attr name="carbon_inAnimation" />
+        <attr name="carbon_outAnimation" />
+
+        <attr name="carbon_maxWidth" />
+        <attr name="carbon_maxHeight" />
+
+        <attr name="carbon_tint" />
+        <attr name="carbon_tintMode" />
+        <attr name="carbon_backgroundTint" />
+        <attr name="carbon_backgroundTintMode" />
+        <attr name="carbon_animateColorChanges" />
+
+        <attr name="android:textStyle" />
+        <attr name="carbon_font" />
+        <attr name="carbon_fontWeight" />
+        <attr name="android:textAppearance" />
+        <attr name="android:singleLine" />
+        <attr name="android:maxLines" />
+        <attr name="android:textAllCaps" />
+
+        <attr name="carbon_cornerRadiusTopStart" />
+        <attr name="carbon_cornerRadiusTopEnd" />
+        <attr name="carbon_cornerRadiusBottomStart" />
+        <attr name="carbon_cornerRadiusBottomEnd" />
+        <attr name="carbon_cornerRadius" />
+
+        <attr name="carbon_cornerCutTopStart" />
+        <attr name="carbon_cornerCutTopEnd" />
+        <attr name="carbon_cornerCutBottomStart" />
+        <attr name="carbon_cornerCutBottomEnd" />
+        <attr name="carbon_cornerCut" />
+
+        <attr name="carbon_stroke" />
+        <attr name="carbon_strokeWidth" />
+
+        <attr name="carbon_htmlText" />
+
+        <attr name="carbon_autoSizeText" />
+        <attr name="carbon_autoSizeMinTextSize" />
+        <attr name="carbon_autoSizeMaxTextSize" />
+        <attr name="carbon_autoSizeStepGranularity" />
+
+        <attr name="carbon_tooltipText" />
+    </declare-styleable>
+    <attr name="carbon_textAppearanceButton" format="reference" />
+    <attr name="carbon_rippleStyle" format="enum">
+        <enum name="over" value="0" />
+        <enum name="background" value="1" />
+        <enum name="borderless" value="2" />
+    </attr>
+
+</resources>
