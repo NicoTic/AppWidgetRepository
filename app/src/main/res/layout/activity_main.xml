@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.chinatsp.demo1.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="horizontal">
+
+            <com.chinatsp.shapebutton.ShapeButton
+                android:id="@+id/ripple_btn"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/carbon_padding"
+                android:background="#ffffff"
+                android:stateListAnimator="@null"
+                android:text="TOM"
+                app:carbon_cornerCut="4dp"
+                app:carbon_elevation="30dp"
+                app:carbon_elevationShadowColor="#40ff0000"
+                app:carbon_stroke="@color/carbon_green_400"
+                app:carbon_strokeWidth="1dp" />
+                
+             <com.chinatsp.shapebutton.chip.Chip
+                android:id="@+id/chip"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/carbon_chipHeight"
+                android:layout_margin="16dp"
+                android:text="HELLO"
+                android:background="@color/carbon_defaultColorControl"
+                android:clickable="true"
+                android:checked="false"
+                app:checked_color="@color/carbon_red_700"
+                app:un_enable_color="@color/carbon_grey_700"/>
+
+        </com.chinatsp.demo1.ripple.LinearLayout>
+
+    </HorizontalScrollView>
+
+
+
+
+</LinearLayout>

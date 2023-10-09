@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="carbon_Button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">@dimen/carbon_paddingHalf</item>
+        <item name="android:paddingRight">@dimen/carbon_paddingHalf</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="carbon_elevation">@dimen/carbon_elevationButton</item>
+        <item name="carbon_cornerRadius">2dp</item>
+        <item name="android:textColor">@null</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@color/carbon_defaultColorControl</item>
+        <item name="carbon_rippleColor">?attr/carbon_rippleColor</item>
+    </style>
+
+
+    <style name="carbon_Button.Flat">
+        <item name="carbon_rippleColor">?attr/carbon_rippleColor</item>
+        <item name="carbon_elevation">@dimen/carbon_elevationFlat</item>
+    </style>
+
+    <style name="carbon_Button.Outlined" parent="carbon_Button.Flat">
+        <item name="carbon_stroke">@color/carbon_defaultColorControl</item>
+        <item name="carbon_strokeWidth">@dimen/carbon_strokeWidthButton</item>
+    </style>
+</resources>

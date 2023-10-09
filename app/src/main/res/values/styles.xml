@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="carbon_LinearLayout">
+        <item name="carbon_rippleColor">@null</item>
+    </style>
+
+    <style name="carbon_Chip" parent="carbon_LinearLayout">
+        <item name="carbon_rippleColor">?attr/carbon_rippleColor</item>
+        <item name="carbon_cornerRadius">@dimen/carbon_margin</item>
+        <item name="android:background">@color/carbon_defaultColorControl</item>
+        <item name="carbon_elevation">@dimen/carbon_elevationFlat</item>
+        <item name="carbon_icon">@null</item>
+        <item name="android:minHeight">@dimen/carbon_chipHeight</item>
+        <item name="carbon_maxHeight">@dimen/carbon_chipHeight</item>
+    </style>
+
+    <style name="carbon_Chip.Outlined">
+        <item name="carbon_strokeWidth">0.5dp</item>
+        <item name="carbon_stroke">@color/carbon_defaultColorControl</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="carbon_RadioButton">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="carbon_buttonGravity">start</item>
+        <item name="carbon_rippleColor">@null</item>
+        <item name="android:drawablePadding">@dimen/carbon_padding</item>
+        <item name="android:background">@null</item>
+        <item name="android:button">@drawable/carbon_radio_anim</item>
+    </style>
+
+</resources>
