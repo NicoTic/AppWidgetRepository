@@ -49,4 +49,5 @@
         <attr name="carbon_removable" format="boolean" />
         <attr name="android:checked" />
     </declare-styleable>
+
 </resources>

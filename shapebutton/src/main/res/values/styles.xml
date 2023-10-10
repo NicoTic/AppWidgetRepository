@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="carbon_LinearLayout">
         <item name="carbon_rippleColor">@null</item>
     </style>
@@ -13,5 +14,6 @@
         <item name="android:minHeight">@dimen/carbon_chipHeight</item>
         <item name="carbon_maxHeight">@dimen/carbon_chipHeight</item>
     </style>
+
 
 </resources>
