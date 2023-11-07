@@ -18,7 +18,7 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.chinatsp.shapebutton.R;
-import com.chinatsp.shapebutton.shapeButton.common.Carbon;
+import com.chinatsp.shapebutton.common.Carbon;
 
 
 public class Chip extends LinearLayoutCompat implements Checkable {
@@ -96,7 +96,7 @@ public class Chip extends LinearLayoutCompat implements Checkable {
 
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Chip, defStyleAttr, defStyleRes);
 
-        Carbon.initDefaultBackground(this, a, colorStateIds);
+        ChipUtils.initChipDefaultBackground(this, a, colorStateIds);
 
         setText(a.getString(R.styleable.Chip_android_text));
         setIcon(Carbon.getDrawable(this, a, R.styleable.Chip_carbon_icon, 0));

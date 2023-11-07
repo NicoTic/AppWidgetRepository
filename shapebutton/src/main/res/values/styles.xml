@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="carbon_LinearLayout">
         <item name="carbon_rippleColor">@null</item>
     </style>
@@ -12,8 +11,29 @@
         <item name="carbon_elevation">@dimen/carbon_elevationFlat</item>
         <item name="carbon_icon">@null</item>
         <item name="android:minHeight">@dimen/carbon_chipHeight</item>
-        <item name="carbon_maxHeight">@dimen/carbon_chipHeight</item>
     </style>
 
+    <style name="carbon_Dialog" parent="carbon_LinearLayout">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:minWidth">@dimen/carbon_dialogMinimumWidth</item>
+        <item name="carbon_cornerRadius">@dimen/carbon_cornerRadiusDialog</item>
+        <item name="carbon_elevation">@dimen/carbon_elevationDialog</item>
+    </style>
+
+    <style name="carbon_Label">
+        <item name="carbon_rippleColor">@null</item>
+        <item name="carbon_animateColorChanges">true</item>
+        <item name="android:textAppearance">?attr/carbon_textAppearanceBody1</item>
+    </style>
+
+    <style name="carbon_Label.Tooltip">
+        <item name="android:minHeight">@dimen/carbon_tooltipHeight</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/carbon_tooltipPadding</item>
+        <item name="android:paddingRight">@dimen/carbon_tooltipPadding</item>
+        <item name="android:background">@color/carbon_tooltip</item>
+        <item name="android:textColor">@color/carbon_textColorPrimary_dark</item>
+        <item name="android:textSize">@dimen/carbon_tooltipTextSize</item>
+    </style>
 
 </resources>

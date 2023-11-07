@@ -11,7 +11,7 @@ import com.chinatsp.shapebutton.shapeButton.stateAnimator.StateAnimator;
 
 public class AnimUtils {
     public static final long TOOLTIP_DURATION = 3000;
-    public static final int SHORT_ANIMATION_DURATION = 150;
+    public static final int SHORT_ANIMATION_DURATION = 200;
     private static final int LONG_ANIMATION_DURATION = 500;
     private AnimUtils() {
     }

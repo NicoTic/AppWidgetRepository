@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="carbon_FloatingActionButton">
+        <item name="android:layout_width">@dimen/carbon_fabSize</item>
+        <item name="android:layout_height">@dimen/carbon_fabSize</item>
+        <item name="android:padding">@dimen/carbon_padding</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/carbon_defaultColorControl</item>
+        <item name="android:minWidth">@dimen/carbon_fabSize</item>
+        <item name="android:minHeight">@dimen/carbon_fabSize</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="carbon_FloatingActionButton.Small">
+        <item name="android:layout_width">@dimen/carbon_smallFabSize</item>
+        <item name="android:layout_height">@dimen/carbon_smallFabSize</item>
+        <item name="android:minWidth">@dimen/carbon_smallFabSize</item>
+        <item name="android:minHeight">@dimen/carbon_smallFabSize</item>
+        <item name="android:padding">@dimen/carbon_paddingHalf</item>
+    </style>
+</resources>

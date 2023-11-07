@@ -31,11 +31,7 @@
         <attr name="carbon_strokeWidth" />
     </declare-styleable>
 
-    <attr name="carbon_rippleStyle" format="enum">
-        <enum name="over" value="0" />
-        <enum name="background" value="1" />
-        <enum name="borderless" value="2" />
-    </attr>
+
 
 
     <attr name="carbon_chipStyle" format="reference" />
@@ -50,4 +46,155 @@
         <attr name="android:checked" />
     </declare-styleable>
 
+
+    <declare-styleable name="ExpansionPanel">
+        <attr name="carbon_expanded" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CheckBox">
+        <attr name="android:drawablePadding" />
+        <attr name="android:checked" />
+        <attr name="carbon_buttonGravity" />
+        <attr name="android:button" />
+
+        <!--tint-->
+        <attr name="carbon_tint" />
+        <attr name="carbon_tintMode" />
+        <attr name="carbon_backgroundTint" />
+        <attr name="carbon_backgroundTintMode" />
+        <attr name="carbon_animateColorChanges" />
+        <attr name="carbon_tint_check" />
+    </declare-styleable>
+    <attr name="carbon_buttonGravity" format="enum">
+        <enum name="left" value="0" />
+        <enum name="start" value="1" />
+        <enum name="right" value="2" />
+        <enum name="end" value="3" />
+    </attr>
+
+
+    <declare-styleable name="RadioButton">
+        <attr name="android:drawablePadding" />
+        <attr name="android:checked" />
+        <attr name="carbon_buttonGravity" />
+        <attr name="android:button" />
+
+        <!--tint-->
+        <attr name="carbon_tint" />
+        <attr name="carbon_tintMode" />
+        <attr name="carbon_backgroundTint" />
+        <attr name="carbon_backgroundTintMode" />
+        <attr name="carbon_animateColorChanges" />
+    </declare-styleable>
+
+    <declare-styleable name="RadioGroup">
+        <attr name="android:checkedButton" />
+    </declare-styleable>
+
+    <!-- 图标状态对应颜色 -->
+    <attr name="carbon_iconColor" format="color" />
+    <attr name="carbon_iconColorActive" format="color" />
+    <attr name="carbon_iconColorPressed" format="color" />
+    <attr name="carbon_iconColorDisabled" format="color" />
+
+    <!-- 阴影 -->
+    <attr name="carbon_elevation" format="dimension" />
+    <attr name="carbon_elevationShadowColor" format="color" />
+    <attr name="carbon_elevationAmbientShadowColor" format="color" />
+    <attr name="carbon_elevationSpotShadowColor" format="color" />
+
+    <!-- shape -->
+    <attr name="carbon_cornerRadiusTopStart" format="dimension" />
+    <attr name="carbon_cornerRadiusTopEnd" format="dimension" />
+    <attr name="carbon_cornerRadiusBottomStart" format="dimension" />
+    <attr name="carbon_cornerRadiusBottomEnd" format="dimension" />
+    <attr name="carbon_cornerRadius" format="dimension" />
+
+    <attr name="carbon_cornerCutTopStart" format="dimension" />
+    <attr name="carbon_cornerCutTopEnd" format="dimension" />
+    <attr name="carbon_cornerCutBottomStart" format="dimension" />
+    <attr name="carbon_cornerCutBottomEnd" format="dimension" />
+    <attr name="carbon_cornerCut" format="dimension" />
+
+    <!-- ripple -->
+    <attr name="carbon_rippleColor" format="color" />
+    <attr name="carbon_rippleHotspot" format="boolean" />
+    <attr name="carbon_rippleStyle" format="enum">
+        <enum name="over" value="0" />
+        <enum name="background" value="1" />
+        <enum name="borderless" value="2" />
+    </attr>
+    <attr name="carbon_rippleRadius" format="dimension" />
+    <!-- stroke -->
+    <attr name="carbon_stroke" format="color" />
+    <attr name="carbon_strokeWidth" format="dimension" />
+    <!-- icon -->
+    <attr name="carbon_icon" format="reference" />
+
+    <!-- tiny -->
+    <attr name="carbon_tint" format="color" />
+    <attr name="carbon_tintMode" format="enum">
+        <enum name="src_over" value="0" />
+        <enum name="src_in" value="1" />
+        <enum name="src_atop" value="2" />
+        <enum name="multiply" value="3" />
+        <enum name="screen" value="4" />
+        <enum name="add" value="5" />
+    </attr>
+    <attr name="carbon_backgroundTint" format="color" />
+    <attr name="carbon_backgroundTintMode" format="enum">
+        <enum name="src_over" value="0" />
+        <enum name="src_in" value="1" />
+        <enum name="src_atop" value="2" />
+        <enum name="multiply" value="3" />
+        <enum name="screen" value="4" />
+        <enum name="add" value="5" />
+    </attr>
+    <attr name="carbon_animateColorChanges" format="boolean" />
+    <attr name="carbon_tint_check" format="color" />
+
+    <!-- state -->
+    <attr name="carbon_state_invalid" format="boolean" />
+    <attr name="carbon_state_indeterminate" format="boolean" />
+
+    <!--textAppearance-->
+    <attr name="carbon_textAppearanceBody2" format="reference" />
+    <attr name="carbon_textAppearanceBody1" format="reference" />
+
+    <attr name="carbon_dialogStyle" format="reference" />
+
+
+    <!-- FloatingActionButton -->
+    <attr name="carbon_fabStyle" format="reference" />
+    <declare-styleable name="FloatingActionButton">
+        <attr name="carbon_menu" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="GaussianBlurView">
+        <attr name="blurRadius" format="dimension"/>
+        <attr name="blurFactor" format="float"/>
+        <attr name="blurOverlayColor" format="color"/>
+
+        <attr name="blurCornerRadiusTopStart" format="dimension" />
+        <attr name="blurCornerRadiusTopEnd"  format="dimension"/>
+        <attr name="blurCornerRadiusBottomStart" format="dimension"/>
+        <attr name="blurCornerRadiusBottomEnd" format="dimension"/>
+        <attr name="blurCornerRadius" format="dimension"/>
+    </declare-styleable>
+
+    <attr name="carbon_imageViewStyle" format="reference" />
+    <declare-styleable name="TintImageView">
+        <attr name="android:enabled" />
+        <attr name="android:background" />
+
+        <attr name="carbon_tint" />
+        <attr name="carbon_tintMode" />
+        <attr name="carbon_backgroundTint" />
+        <attr name="carbon_backgroundTintMode" />
+        <attr name="carbon_animateColorChanges" />
+
+        <attr name="carbon_src" format="reference" />
+    </declare-styleable>
 </resources>

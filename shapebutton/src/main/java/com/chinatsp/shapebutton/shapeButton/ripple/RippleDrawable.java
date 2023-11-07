@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 
-import com.chinatsp.shapebutton.shapeButton.common.Carbon;
+import com.chinatsp.shapebutton.common.Carbon;
 
 public interface RippleDrawable{
 

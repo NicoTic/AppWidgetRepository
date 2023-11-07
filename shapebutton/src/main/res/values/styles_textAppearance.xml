@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="carbon_TextAppearance" parent="@android:style/TextAppearance" />
+
+    <style name="carbon_TextAppearance.Body1">
+        <item name="android:textSize">@dimen/carbon_textSizeBody</item>
+        <item name="android:textColor">@color/carbon_defaultTextPrimaryColor</item>
+    </style>
+
+    <style name="carbon_TextAppearance.Body2">
+        <item name="android:textSize">@dimen/carbon_textSizeBody</item>
+        <item name="fontWeight">500</item>
+        <item name="android:textColor">@color/carbon_defaultTextPrimaryColor</item>
+    </style>
+
+</resources>

@@ -1,22 +1,30 @@
-package com.chinatsp.shapebutton.shapeButton.common;
+package com.chinatsp.shapebutton.common;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.drawable.ColorStateListDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
+import androidx.appcompat.view.SupportMenuInflater;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.TintAwareDrawable;
 
 import com.chinatsp.shapebutton.R;
+import com.chinatsp.shapebutton.checkbox.tint.TintedView;
 import com.chinatsp.shapebutton.chip.ColorStateListFactory;
+import com.chinatsp.shapebutton.shapeButton.reveal.RevealView;
 import com.chinatsp.shapebutton.shapeButton.ripple.RippleDrawable;
 import com.chinatsp.shapebutton.shapeButton.ripple.RippleView;
 import com.chinatsp.shapebutton.shapeButton.shadow.ShadowView;
@@ -28,13 +36,21 @@ import com.google.android.material.shape.CutCornerTreatment;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
-public class Carbon {
+import java.security.InvalidParameterException;
 
+public class Carbon {
+    private static final long DEFAULT_REVEAL_DURATION = 200;
+    private static long defaultRevealDuration = DEFAULT_REVEAL_DURATION;
     public static final boolean IS_LOLLIPOP_OR_HIGHER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
     public static final boolean IS_PIE_OR_HIGHER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P;
 
     public static PorterDuffXfermode CLEAR_MODE = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
+
+    public static long getDefaultRevealDuration() {
+        return defaultRevealDuration;
+    }
+
     private Carbon() {
     }
 
@@ -119,16 +135,9 @@ public class Carbon {
         }
     }
 
-    public static int getThemeColor(Context context, int attr) {
-        Resources.Theme theme = context.getTheme();
-        TypedValue typedValue = new TypedValue();
-        theme.resolveAttribute(attr, typedValue, true);
-        return typedValue.resourceId != 0 ? context.getResources().getColor(typedValue.resourceId) : typedValue.data;
-    }
-
     public static Drawable getDrawable(View view, TypedArray a, int attr, int defaultValue) {
         if (!view.isInEditMode()) {
-            int resId = a.getResourceId(attr, 0);
+            int resId = a.getResourceId(attr, defaultValue);
             if (resId != 0) {
                 return ContextCompat.getDrawable(view.getContext(), resId);
             }
@@ -136,14 +145,12 @@ public class Carbon {
             try {
                 return a.getDrawable(attr);
             } catch (Exception e) {
-                return view.getResources().getDrawable(defaultValue);
+                return ContextCompat.getDrawable(view.getContext(),defaultValue);
             }
         }
 
         return null;
     }
-
-
 
     public static void initStroke(StrokeView strokeView, TypedArray a, int[] ids) {
         int carbon_stroke = ids[0];
@@ -157,46 +164,134 @@ public class Carbon {
         strokeView.setStrokeWidth(a.getDimension(carbon_strokeWidth, 0));
     }
 
+    public static ColorStateList getDefaultColorStateList(View view, TypedArray a, int id) {
+        if (!a.hasValue(id))
+            return null;
 
-    public static void initDefaultBackground(View view, TypedArray a, int[] ids) {
-        Drawable d = getDefaultColorDrawable(view, a, ids);
-        if (d != null)
-            view.setBackgroundDrawable(d);
-    }
+        Context context = view.getContext();
+        int resourceId = a.getResourceId(id, 0);
 
-    public static Drawable getDefaultColorDrawable(View view, TypedArray a, int[] ids) {
-        ColorStateList color = getDefaultColorStateList(view, a, ids);
-        if (color != null) {
-            Drawable d = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                d = new ColorStateListDrawable(color);
-            }
-            return d;
+        if (resourceId == R.color.carbon_defaultIconColor) {
+            return ColorStateListFactory.getInstance().makeIconPrimary1(context);
+        }else if(resourceId == R.color.carbon_defaultIconCheckColor){
+            return ColorStateListFactory.getInstance().makeIconPrimary(context);
+        }else if(resourceId == R.color.carbon_defaultIconPressColor){
+            return ColorStateListFactory.getInstance().makeIconPrimary2(context);
         }
         return null;
     }
 
-    public static ColorStateList getDefaultColorStateList(View view, TypedArray a, int[] ids) {
-        Context context = view.getContext();
-        int chip_bg = ids[0];
-        int chip_pressed_bg = ids[1];
-        int chip_checked_bg = ids[2];
-        int chip_un_enable_bg = ids[3];
-
-        if (!a.hasValue(chip_bg))
-            return null;
-        int backgroundColor = a.getColor(chip_bg, 0);
-        int pressedBgColor = a.getColor(chip_pressed_bg,ContextCompat.getColor(context, R.color.carbon_colorControlPressed));
-        int checkedBgColor = a.getColor(chip_checked_bg,ContextCompat.getColor(context,R.color.carbon_colorControlActivated));
-        int unEnableBgColor = a.getColor(chip_un_enable_bg,ContextCompat.getColor(context,R.color.carbon_colorControlDisabled));
-
-
-        return ColorStateListFactory.getInstance().make(context,backgroundColor,
-                pressedBgColor,
-                checkedBgColor,
-                unEnableBgColor,
-                getThemeColor(context,com.google.android.material.R.attr.colorError));
+    public static float getRevealRadius(View view, int x, int y, float radius) {
+        if (radius >= 0)
+            return radius;
+        if (radius != RevealView.MAX_RADIUS)
+            throw new InvalidParameterException("radius should be RevealView.MAX_RADIUS, 0.0f or a positive float");
+        int w = Math.max(view.getWidth() - x, x);
+        int h = Math.max(view.getHeight() - y, y);
+        return (float) Math.sqrt(w * w + h * h);
     }
 
+    /**
+     *
+     * @param drawable
+     * @param tint
+     * @param mode
+     */
+    public static void setTintListMode(Drawable drawable, ColorStateList tint, PorterDuff.Mode mode) {
+        if (Carbon.IS_LOLLIPOP_OR_HIGHER) {
+            drawable.setTintList(tint);
+            drawable.setTintMode(mode);
+        } else if (drawable instanceof TintAwareDrawable) {
+            ((TintAwareDrawable) drawable).setTintList(tint);
+            ((TintAwareDrawable) drawable).setTintMode(mode);
+        } else {
+            drawable.setColorFilter(tint == null ? null : new PorterDuffColorFilter(tint.getColorForState(drawable.getState(), tint.getDefaultColor()), mode));
+        }
+    }
 
+    public static void clearTint(Drawable drawable) {
+        if (Carbon.IS_LOLLIPOP_OR_HIGHER) {
+            drawable.setTintList(null);
+        } else if (drawable instanceof TintAwareDrawable) {
+            ((TintAwareDrawable) drawable).setTintList(null);
+        } else {
+            drawable.setColorFilter(null);
+        }
+    }
+
+    /**
+     * 初始化控件选择时的图标颜色
+     */
+    public static void initCheckedTint(TintedView view, TypedArray a, int carbon_tint_checked,int carbon_tintMode){
+        View view1 = (View) view;
+        Context context = view1.getContext();
+        int defaultColor = getThemeColor(context, android.R.attr.colorPrimary);
+        int check_color = ContextCompat.getColor(context,R.color.carbon_orange_700);
+        int checked_color = a.getColor(carbon_tint_checked, 0);
+        Log.d("aaaasss","defaultColor = " + defaultColor + ",check_color = " + check_color + " ,checked_color="+checked_color);
+        ColorStateList colorStateList = ColorStateListFactory.getInstance().makeIconPrimaryChecked(context,checked_color);
+        if(colorStateList!=null){
+            view.setTintList(colorStateList);
+        }
+
+        view.setTintMode(TintedView.modes[a.getInt(carbon_tintMode, 1)]);
+    }
+
+    /**
+     * 初始化控件的图标颜色/背景颜色
+     * @param view
+     * @param a
+     * @param ids
+     */
+    public static void initTint(TintedView view, TypedArray a, int[] ids) {
+        int carbon_tint = ids[0];
+        int carbon_tintMode = ids[1];
+        int carbon_backgroundTint = ids[2];
+        int carbon_backgroundTintMode = ids[3];
+        int carbon_animateColorChanges = ids[4];
+
+        if (a.hasValue(carbon_tint)) {
+            ColorStateList color = getDefaultColorStateList((View) view, a, carbon_tint);
+
+            if (color == null)
+                color = a.getColorStateList(carbon_tint);
+            if (color != null)
+                view.setTintList(color);
+        }
+        view.setTintMode(TintedView.modes[a.getInt(carbon_tintMode, 1)]);
+
+        if (a.hasValue(carbon_backgroundTint)) {
+            ColorStateList color = getDefaultColorStateList((View) view, a, carbon_backgroundTint);
+            if (color == null)
+                color = a.getColorStateList(carbon_backgroundTint);
+            if (color != null)
+                view.setBackgroundTintList(color);
+        }
+        view.setBackgroundTintMode(TintedView.modes[a.getInt(carbon_backgroundTintMode, 1)]);
+
+        if (a.hasValue(carbon_animateColorChanges))
+            view.setAnimateColorChangesEnabled(a.getBoolean(carbon_animateColorChanges, false));
+    }
+
+    public static int getThemeColor(Context context, int attr) {
+        Resources.Theme theme = context.getTheme();
+        TypedValue typedValue = new TypedValue();
+        theme.resolveAttribute(attr, typedValue, true);
+        return typedValue.resourceId != 0 ? context.getResources().getColor(typedValue.resourceId) : typedValue.data;
+    }
+
+    public static Menu getMenu(Context context, int resId) {
+        Context contextWrapper = context;
+        Menu menu = new MenuBuilder(contextWrapper);
+        MenuInflater inflater = new SupportMenuInflater(contextWrapper);
+        inflater.inflate(resId, menu);
+        return menu;
+    }
+
+    public static int getThemeResId(Context context, int attr) {
+        Resources.Theme theme = context.getTheme();
+        TypedValue typedValueAttr = new TypedValue();
+        theme.resolveAttribute(attr, typedValueAttr, true);
+        return typedValueAttr.resourceId;
+    }
 }

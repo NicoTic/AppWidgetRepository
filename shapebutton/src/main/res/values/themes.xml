@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Demo1" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/carbon_green_500</item>
+        <item name="colorPrimaryDark">@color/carbon_green_800</item>
+        <item name="colorAccent">@color/carbon_pink_500</item>
+
+        <item name="carbon_dialogStyle">@style/carbon_Dialog</item>
     </style>
 
     <style name="Theme.Demo1" parent="Base.Theme.Demo1" />

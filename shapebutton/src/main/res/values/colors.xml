@@ -24,10 +24,27 @@
     <color name="carbon_black_87o">#ff212121</color>
 
     <color name="carbon_defaultColorControl">@color/carbon_colorControl</color>
-    <color name="carbon_defaultIconColor">#12345678</color>
+
 
     <color name="carbon_colorControlActivated">#ff00ff</color>
     <color name="carbon_colorControlPressed">#00ff00</color>
     <color name="carbon_colorControl">@color/carbon_black_12</color>
     <color name="carbon_colorControlDisabled">#ffff00</color>
+
+
+    <color name="carbon_iconColor">@color/carbon_black_54</color>
+    <color name="carbon_iconActiveColor">@color/carbon_white_50</color>
+    <color name="carbon_iconPressedColor">@color/carbon_white_70</color>
+    <color name="carbon_iconDisabledColor">@color/carbon_white_10</color>
+
+    <color name="carbon_defaultColorPrimary">#12345678</color>
+
+    <color name="carbon_defaultIconColor">#12345678</color>
+    <color name="carbon_defaultIconCheckColor">#12345678</color>
+    <color name="carbon_defaultIconPressColor">#12345678</color>
+
+    <color name="carbon_defaultTextPrimaryColor">@color/carbon_black_54</color>
+
+    <color name="carbon_tooltip">#e5616161</color>
+    <color name="carbon_textColorPrimary_dark">@color/carbon_white</color>
 </resources>

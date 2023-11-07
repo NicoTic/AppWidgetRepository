@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/carbon_fabSize"
+    android:layoutDirection="ltr">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/carbon_fab"
+        style="@style/carbon_FloatingActionButton.Small"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/carbon_paddingHalf"
+        android:layout_marginRight="@dimen/carbon_paddingHalf"
+        android:background="?attr/colorSurface"
+        android:clickable="false"
+        android:duplicateParentState="true"
+        android:focusable="false"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/carbon_tooltip"
+        style="@style/carbon_Label.Tooltip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/carbon_marginHalf"
+        android:duplicateParentState="true"
+        android:maxLines="1" />
+</LinearLayout>

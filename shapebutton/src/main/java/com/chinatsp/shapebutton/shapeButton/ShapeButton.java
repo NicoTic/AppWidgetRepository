@@ -1,5 +1,7 @@
 package com.chinatsp.shapebutton.shapeButton;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -14,6 +16,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewOutlineProvider;
 
 import androidx.annotation.AttrRes;
@@ -23,7 +26,9 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.chinatsp.shapebutton.R;
-import com.chinatsp.shapebutton.shapeButton.common.Carbon;
+import com.chinatsp.shapebutton.common.Carbon;
+import com.chinatsp.shapebutton.shapeButton.reveal.RevealAnimator;
+import com.chinatsp.shapebutton.shapeButton.reveal.RevealView;
 import com.chinatsp.shapebutton.shapeButton.ripple.RippleDrawable;
 import com.chinatsp.shapebutton.shapeButton.ripple.RippleView;
 import com.chinatsp.shapebutton.shapeButton.shadow.ShadowView;
@@ -41,7 +46,8 @@ public class ShapeButton extends AppCompatButton
         ShapeModelView,
         RippleView,
         StrokeView,
-        StateAnimatorView {
+        StateAnimatorView,
+        RevealView {
     public ShapeButton(@NonNull Context context) {
         super(context);
         initButton(null, android.R.attr.buttonStyle, R.style.carbon_Button);
@@ -101,12 +107,11 @@ public class ShapeButton extends AppCompatButton
     private void initButton(AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.shape_button, defStyleAttr, defStyleRes);
         Carbon.initElevation(this, a, elevationIds);
-        Carbon.initCornerCutRadius(this,a,cornerCutRadiusIds);
-        Carbon.initRippleDrawable(this,a,rippleIds);
-        Carbon.initStroke(this,a,strokeIds);
+        Carbon.initCornerCutRadius(this, a, cornerCutRadiusIds);
+        Carbon.initRippleDrawable(this, a, rippleIds);
+        Carbon.initStroke(this, a, strokeIds);
         a.recycle();
     }
-
 
 
     // -------------------------------
@@ -115,6 +120,7 @@ public class ShapeButton extends AppCompatButton
     private float elevation = 0;
     private float translationZ = 0;
     private ColorStateList ambientShadowColor, spotShadowColor;
+
     @Override
     public float getElevation() {
         return elevation;
@@ -236,6 +242,7 @@ public class ShapeButton extends AppCompatButton
     @Override
     public void draw(Canvas canvas) {
         boolean c = !Carbon.isShapeRect(shapeModel, boundsRect);
+        boolean r = revealAnimator != null;
 
         if (Carbon.IS_PIE_OR_HIGHER) {
             if (spotShadowColor != null)
@@ -245,24 +252,40 @@ public class ShapeButton extends AppCompatButton
         }
 
         // 判断如果不是圆角矩形,需要使用轮廓Path,绘制一下Path,不然显示会很奇怪
-        if (getWidth() > 0 && getHeight() > 0 && ((c && !Carbon.IS_LOLLIPOP_OR_HIGHER) || !shapeModel.isRoundRect(boundsRect))) {
-            int saveCount = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
-            drawInternal(canvas);
-            paint.setXfermode(Carbon.CLEAR_MODE);
-            if (c) {
-                cornersMask.setFillType(Path.FillType.INVERSE_WINDING);
-                canvas.drawPath(cornersMask, paint);
-            }
-            canvas.restoreToCount(saveCount);
-            paint.setXfermode(null);
-        }else{
-            drawInternal(canvas);
-        }
+//        if (getWidth() > 0 && getHeight() > 0 && ((c && !Carbon.IS_LOLLIPOP_OR_HIGHER) || !shapeModel.isRoundRect(boundsRect))) {
+//            int saveCount = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
+//            if (r) {
+//                int saveCount2 = canvas.save();
+//                canvas.clipRect(revealAnimator.x - revealAnimator.radius, revealAnimator.y - revealAnimator.radius, revealAnimator.x + revealAnimator.radius, revealAnimator.y + revealAnimator.radius);
+//                drawInternal(canvas);
+//                canvas.restoreToCount(saveCount2);
+//            } else {
+//                drawInternal(canvas);
+//            }
+//
+//            // 将目标对象（Canvas上已经存在的内容）与源图像（即将绘制的内容）之间重叠的区域变成透明
+//            paint.setXfermode(Carbon.CLEAR_MODE);
+//            if (c) {
+//                // 设置path的填充类型为取Path所有未占的区域，这样就只会绘制path和button不相交的部分
+//                cornersMask.setFillType(Path.FillType.INVERSE_WINDING);
+//                // 经过INVERSE_WINDING 和 CLEAR_MODE 则将path和button不相交的部分变为了透明，这样就只剩下相交区域的轮廓了！！
+//                canvas.drawPath(cornersMask, paint);
+//            }
+//            if (r)
+//                canvas.drawPath(revealAnimator.mask, paint);
+//
+//            canvas.restoreToCount(saveCount);
+//            paint.setXfermode(null);
+//        } else {
+//            drawInternal(canvas);
+//        }
+
+        drawInternal(canvas);
     }
 
     public void drawInternal(@NonNull Canvas canvas) {
         super.draw(canvas);
-        if(stroke!=null){
+        if (stroke != null) {
             drawStroke(canvas);
         }
         if (rippleDrawable != null && rippleDrawable.getStyle() == RippleDrawable.Style.Over)
@@ -274,6 +297,7 @@ public class ShapeButton extends AppCompatButton
     // -------------------------------
     private ShapeAppearanceModel shapeModel = new ShapeAppearanceModel();
     private MaterialShapeDrawable shadowDrawable = new MaterialShapeDrawable(shapeModel);
+
     @Override
     public void setShapeModel(ShapeAppearanceModel shapeModel) {
         this.shapeModel = shapeModel;
@@ -283,6 +307,7 @@ public class ShapeButton extends AppCompatButton
         if (!Carbon.IS_LOLLIPOP_OR_HIGHER)
             postInvalidate();
     }
+
     // View的轮廓形状
     private RectF boundsRect = new RectF();
     // View的轮廓形状形成的Path路径
@@ -294,7 +319,7 @@ public class ShapeButton extends AppCompatButton
     private void updateCorners() {
         if (Carbon.IS_LOLLIPOP_OR_HIGHER) {
             // 如果不是矩形,裁剪View的轮廓
-            if (!Carbon.isShapeRect(shapeModel, boundsRect)){
+            if (!Carbon.isShapeRect(shapeModel, boundsRect)) {
                 setClipToOutline(true);
             }
             //该方法返回一个Outline对象，它描述了该视图的形状。
@@ -359,7 +384,7 @@ public class ShapeButton extends AppCompatButton
     public boolean dispatchTouchEvent(@NonNull MotionEvent event) {
 
         if (rippleDrawable != null && event.getAction() == MotionEvent.ACTION_DOWN)
-            rippleDrawable.setHotspot(event.getX(),event.getY());
+            rippleDrawable.setHotspot(event.getX(), event.getY());
 
         return super.dispatchTouchEvent(event);
     }
@@ -508,6 +533,7 @@ public class ShapeButton extends AppCompatButton
     // -------------------------------
 
     private StateAnimator stateAnimator = new StateAnimator(this);
+
     @Override
     public void setStateAnimator(StateAnimator stateAnimator) {
         this.stateAnimator = stateAnimator;
@@ -516,5 +542,45 @@ public class ShapeButton extends AppCompatButton
     @Override
     public StateAnimator getStateAnimator() {
         return stateAnimator;
+    }
+
+
+    // -------------------------------
+    // RevealAnimator
+    // -------------------------------
+
+    RevealAnimator revealAnimator;
+
+    @Override
+    public Animator createCircularReveal(int x, int y, float startRadius, float finishRadius) {
+        startRadius = Carbon.getRevealRadius(this, x, y, startRadius);
+        finishRadius = Carbon.getRevealRadius(this, x, y, finishRadius);
+        if (Carbon.IS_LOLLIPOP_OR_HIGHER) {
+            Animator circularReveal = ViewAnimationUtils.createCircularReveal(this, x, y, startRadius, finishRadius);
+            circularReveal.setDuration(Carbon.getDefaultRevealDuration());
+            return circularReveal;
+        } else {
+            revealAnimator = new RevealAnimator(x, y, startRadius, finishRadius);
+            revealAnimator.setDuration(Carbon.getDefaultRevealDuration());
+            revealAnimator.addUpdateListener(animation -> {
+                RevealAnimator reveal = ((RevealAnimator) animation);
+                reveal.radius = (float) reveal.getAnimatedValue();
+                reveal.mask.reset();
+                reveal.mask.addCircle(reveal.x, reveal.y, Math.max((Float) reveal.getAnimatedValue(), 1), Path.Direction.CW);
+                postInvalidate();
+            });
+            revealAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    revealAnimator = null;
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    revealAnimator = null;
+                }
+            });
+        }
+        return revealAnimator;
     }
 }
